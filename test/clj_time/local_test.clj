@@ -2,8 +2,7 @@
   (:require [clojure.test :refer :all]
             [clj-time [core :as time] [format :as fmt] [local :refer :all]]
             [clj-time.core-test :refer [when-available when-not-available]])
-  (:import [org.joda.time.format ISODateTimeFormat]
-           java.util.Date java.sql.Timestamp))
+  (:import java.util.Date java.sql.Timestamp))
 
 (deftest test-now
   (is (= (time/from-time-zone (time/date-time 2010 1 1) (time/default-time-zone))
@@ -27,21 +26,21 @@
   (is (nil? (format-local-time (local-now) ::bad-formatter)))
   (is (nil? (format-local-time "bad-time" :basic-date-time)))
   (is (nil? (format-local-time "bad-time" ::bad-formatter)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)) :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time (time/date-time 1998 4 25) :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/to-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/to-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time (Date. 893462400000) :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/to-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/to-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time (java.sql.Date. 893462400000) :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/from-time-zone (time/date-time 1970 1 1) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/from-time-zone (time/date-time 1970 1 1) (time/default-time-zone)))
          (format-local-time 0 :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time 893462400000 :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/to-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/to-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time (Timestamp. 893462400000) :basic-date-time)))
-  (is (= (fmt/unparse (ISODateTimeFormat/basicDateTime) (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
+  (is (= (fmt/unparse (fmt/formatter-local "yyyyMMdd'T'HHmmss.SSS[X]") (time/from-time-zone (time/date-time 1998 4 25) (time/default-time-zone)))
          (format-local-time "1998-04-25T00:00:00.000" :basic-date-time))))
 
 (deftest test-local-formatters

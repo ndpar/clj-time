@@ -1,5 +1,5 @@
 (defproject clj-time/clj-time "0.13.0-SNAPSHOT"
-  :description "A date and time library for Clojure, wrapping Joda Time."
+  :description "A date and time library for Clojure, wrapping Java Time."
   :url "https://github.com/clj-time/clj-time"
   :mailing-list {:name "clj-time mailing list"
                  :archive "https://groups.google.com/forum/?fromgroups#!forum/clj-time"
@@ -7,8 +7,7 @@
   :license {:name "MIT License"
             :url "http://www.opensource.org/licenses/mit-license.php"
             :distribution :repo}
-  :dependencies [[joda-time "2.9.3"]
-                 [org.clojure/clojure "1.8.0" :scope "provided"]]
+  :dependencies [[org.clojure/clojure "1.8.0" :scope "provided"]]
   :min-lein-version "2.0.0"
   :profiles {:dev {:dependencies [[org.clojure/java.jdbc "0.6.0"]]
                    :plugins [[codox "0.8.10"]]}

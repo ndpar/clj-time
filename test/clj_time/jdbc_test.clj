@@ -9,4 +9,4 @@
   (is (extends? jdbc/IResultSetReadColumn java.sql.Time)))
 
 (deftest test-extends-ISQLValue
-  (is (extends? jdbc/ISQLValue org.joda.time.DateTime)))
+  (is (extends? jdbc/ISQLValue java.time.ZonedDateTime)))
